@@ -1,6 +1,6 @@
 import os
 import sys
-from sys import argv
+import argparse
 from pathlib import Path
 from base64 import b64encode, b64decode
 
@@ -20,20 +20,8 @@ except ImportError:
         os.system('pip3 install asciimatics pycrypto')
         raise SystemExit
 
-__author__ = 'Sagar Kumar'
-__version__ = '0.1.2'
-
-class color:
-    PURPLE = '\033[95m'
-    CYAN = '\033[96m'
-    DARKCYAN = '\033[36m'
-    BLUE = '\033[94m'
-    GREEN = '\033[92m'
-    YELLOW = '\033[93m'
-    RED = '\033[91m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-    END = '\033[0m'
+__author__ = 'sgrkmr'
+__version__ = '0.1.3'
 
 #CBC method with PKCS#7 padding
 class Crypt:
@@ -83,7 +71,7 @@ class Simple_Crypt(Frame):
                                    screen.width * 2 // 3,
                                    hover_focus=True,
                                    can_scroll=False,
-                                   title="Cryptify")
+                                   title="ciphit")
         self.set_theme("monochrome")
         self.crypt = Crypt()
         self.desc = desc
@@ -125,7 +113,7 @@ class Simple_Crypt_Res(Frame):
                                    on_load=self._reload,
                                    hover_focus=True,
                                    can_scroll=False,
-                                   title="Cryptify")
+                                   title="ciphit")
         self.set_theme("monochrome")
         self.desc = desc
         self._main()
@@ -162,7 +150,7 @@ class Simple_Crypt_Res(Frame):
 class File_Select(Frame):
     def __init__(self, screen, *args):
         super(File_Select, self).__init__(
-            screen, screen.height, screen.width, has_border=False, name="Cryptify")
+            screen, screen.height, screen.width, has_border=False, name="ciphit")
 
         self.set_theme("monochrome")
         layout = Layout([1], fill_frame=True)
@@ -181,8 +169,6 @@ class File_Select(Frame):
         self.fix()
 
     def popup(self):
-        #self._scene.add_effect(
-        #    PopUpDialog(self._screen, "You selected: {}".format(self._list.value), ["OK"]))
         CryptModel.src = self._list.value
         raise NextScene("end")
 
@@ -200,7 +186,7 @@ class File_Crypt(Frame):
                                    screen.width // 2,
                                    hover_focus=True,
                                    can_scroll=False,
-                                   title="Cryptify")
+                                   title="ciphit")
         self.set_theme("monochrome")
         self.crypt = Crypt()
         self.desc = desc
@@ -222,7 +208,7 @@ class File_Crypt(Frame):
     def _ok(self):
         try:
             if CryptModel.src is None:
-                src = argv[2]
+                src = args.path
             else:
                 src = CryptModel.src
             with open(src, 'r+', encoding='utf-8') as f:
@@ -287,7 +273,7 @@ class File_Edit(Frame):
                                    on_load=self._reload,
                                    hover_focus=True,
                                    can_scroll=False,
-                                   title="Cryptify")
+                                   title="ciphit")
         self.set_theme("monochrome")
         self.crypt = Crypt()
         self.desc = desc
@@ -308,9 +294,10 @@ class File_Edit(Frame):
 
     def _reload(self):
         try:
-            if argv[2]:
-                self.srcf, CryptModel.src = argv[2], argv[2]
-                
+            if args.path != dcon:
+                self.srcf, CryptModel.src = args.path, args.path
+            else:
+                raise Exception
         except:
             self.srcf = CryptModel.src
         finally:
@@ -367,52 +354,48 @@ def start(desc, *args, **kwargs):
     _init()
 
 def _main():
-    pram = ["-e", "-d", "-ef", "-df", "-t"]
+    global args, dcon
     try:
-        if (len(argv[1:]) >= 2 and (argv[1] in pram[:2]+['-V'])) or (len(argv[1:]) >= 3 and (argv[1] in pram[2:])):
-            print(f"{color.RED+color.UNDERLINE}ERROR:{color.END+color.YELLOW} Improper command{color.END}")
-            exit(1)
-        if len(argv[1:]) == 0:
-            raise Exception
-        if argv[1] == '-V' and len(argv[1:]) == 1:
-            print(f"{color.YELLOW+color.BOLD}cpt {color.BLUE+__version__+color.END}")
-            raise SystemExit
-        if argv[1] not in pram:
-            print(f"{color.RED+color.UNDERLINE}ERROR:{color.END+color.YELLOW} Command not found \"{argv[1]}\"{color.END}")
-            exit(1)
-        #if (argv[1] in pram[2:]) and len(argv[1:]) == 1:
-        #    raise Exception
-        if argv[1] in pram[2:] and len(argv[1:]) != 1:
-            if not Path(argv[2]).is_file():
-                raise FileNotFoundError
-
-        if argv[1] == pram[0]:
+        rnd = lambda size=8, chars=__import__('string').ascii_letters+'0123456789@#&$': ''.join(__import__('random').choice(chars) for _ in range(size))
+        dcon = rnd(size=16)
+        parser = argparse.ArgumentParser(description=f"ciphit -  a cryptography tool by {__author__}", prog="ciphit")
+        group = parser.add_mutually_exclusive_group()
+        parser.add_argument("-V", "--version", help="show version", action="version", version=f"%(prog)s {__version__}")
+        group.add_argument("-e", help="plain text encryption", action="store_true")
+        group.add_argument("-d",  help="plain text decryption", action="store_true")
+        group.add_argument("-t",help="edit encrypted files", action="store_true")
+        parser.add_argument("-p", "--path", help="specify path", nargs='?', const=dcon)
+        args = parser.parse_args()
+        if args.e and not args.path:
             start("Encrypt", start=Simple_Crypt, end=Simple_Crypt_Res)
-        if argv[1] == pram[1]:
+        elif args.d and not args.path:
             start("Decrypt", start=Simple_Crypt, end=Simple_Crypt_Res)
-        if argv[1] == pram[2] and len(argv[1:]) == 1:
+        elif args.e and not args.path == dcon:
+            if not Path(args.path).is_file():
+                raise FileNotFoundError
+            else:
+                start("Encrypt", start=File_Crypt, add=[[Crypt_Bubble,"pass","SUCCESS"],[Crypt_Bubble,"fail","FAILURE"]])
+        elif args.d and not args.path == dcon:
+            if not Path(args.path).is_file():
+                raise FileNotFoundError
+            else:
+                start("Decrypt", start=File_Crypt, add=[[Crypt_Bubble,"pass","SUCCESS"],[Crypt_Bubble,"fail","FAILURE"]])
+        elif args.t and (not args.path or args.path == dcon):
+            start("Edit", start=File_Select, end=File_Edit_Auth, add=[[File_Edit,"edit","Edit"]]) 
+        elif args.t and args.path:
+            if not Path(args.path).is_file():
+                raise FileNotFoundError
+            else:
+                start("Edit", start=File_Edit_Auth, add=[[File_Edit,"edit","Edit"]]) 
+        elif args.e and args.path==dcon:
             start("Encrypt", start=File_Select, end=File_Crypt, add=[[Crypt_Bubble,"pass","SUCCESS"],[Crypt_Bubble,"fail","FAILURE"]])
-        if argv[1] == pram[2]:
-            start("Encrypt", start=File_Crypt, add=[[Crypt_Bubble,"pass","SUCCESS"],[Crypt_Bubble,"fail","FAILURE"]])
-        if argv[1] == pram[3] and len(argv[1:]) == 1:
-            start("Decrypt", start=File_Select, end=File_Crypt, add=[[Crypt_Bubble,"pass","SUCCESS"],[Crypt_Bubble,"fail","FAILURE"]])
-        if argv[1] == pram[3]:
-            start("Decrypt", start=File_Crypt, add=[[Crypt_Bubble,"pass","SUCCESS"],[Crypt_Bubble,"fail","FAILURE"]])
-        if argv[1] == pram[4] and len(argv[1:]) == 1:
-            start("Edit", start=File_Select, end=File_Edit_Auth, add=[[File_Edit,"edit","Edit"]])
-        if argv[1] == pram[4]:
-            start("Edit", start=File_Edit_Auth, add=[[File_Edit,"edit","Edit"]])
+        elif args.d and args.path==dcon:
+            start("Decrypt", start=File_Select, end=File_Crypt, add=[[Crypt_Bubble,"pass","SUCCESS"],[Crypt_Bubble,"fail","FAILURE"]]) 
+        else:
+            parser.print_help()
+            exit(1)
     except FileNotFoundError:
-        print(color.UNDERLINE+color.RED+'ERROR:',color.YELLOW+' No such file or directory exists.',sep=color.END,end=color.END+'\n')
-        exit(1)
-    except Exception:
-        print(f"""{color.RED+color.UNDERLINE}Usage:{color.END+color.CYAN+color.BOLD} cpt {color.END+color.YELLOW}<command> [options] [-V version]{color.END+color.GREEN}\n
-        Commands:{color.END+color.YELLOW}
-        -e            Linear-text Encryption
-        -d            Linear-text Decryption
-        -ef [path]    File based Encryption
-        -df [path]    File based Decryption
-        -t [path]     Edit Encrypted files""",end=color.END+'\n')
+        print(f'ERROR: "{args.path}" No such file or directory exists.')
         exit(1)
 
 if __name__ == '__main__':

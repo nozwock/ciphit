@@ -1,11 +1,11 @@
 #!/usr/bin/zsh
-DIR="~/.cpt"
-SDIR="~/.cpt/cpt"
-CMD="alias cpt='python ~/.cpt/cpt/__init__.py'"
+DIR="~/.ciphit"
+SDIR="~/.ciphit/ciphit"
+CMD="alias ciphit='python ~/.ciphit/ciphit/__init__.py'"
 
 function start() {
 	echo -e "\\n  ▓▓▓▓▓▓▓▓▓▓▓▓"
-	echo -e " ░▓    about ▓ cpt"
+	echo -e " ░▓    about ▓ ciphit"
 	echo -e " ░▓   author ▓ sgrkmr"
 	echo -e " ░▓     code ▓ local"
 	echo -e " ░▓▓▓▓▓▓▓▓▓▓▓▓"
@@ -13,7 +13,6 @@ function start() {
 }
 
 function ask() {
-	# https://djm.me/ask
 	local prompt default reply
 
 	while true; do
@@ -46,10 +45,10 @@ function ask() {
 
 function install() {
 	function prep() {
-		echo -e "\\e[32m[ cpt ]\\e[m copying files"
+		echo -e "\\e[32m[ ciphit ]\\e[m copying files"
 		eval "mkdir -p $SDIR"
-		eval "cp -t $SDIR __main__.py __init__.py"
-		echo -e "\\e[32m[ cpt ]\\e[m creating aliases"
+		eval "cp -t $SDIR ./ciphit/__main__.py ./ciphit/__init__.py"
+		echo -e "\\e[32m[ ciphit ]\\e[m creating aliases"
 		touch ~/.bashrc ~/.zshrc
 		grep -qxF "$CMD" ~/.bashrc || echo $CMD  >> ~/.bashrc
 		grep -qxF "$CMD" ~/.zshrc || echo $CMD >> ~/.zshrc
@@ -61,25 +60,25 @@ function install() {
 	}
 	cd "$(dirname "${BASH_SOURCE[0]}")"
 	if eval "[ -d $DIR ]"; then
-		echo -e "\\e[32m[ cpt ]\\e[m found, reinstalling cpt"
+		echo -e "\\e[32m[ ciphit ]\\e[m found, reinstalling ciphIT"
         	eval "rm -rf $DIR"
 		prep
 	else
-		echo -e "\\e[32m[ cpt ]\\e[m not found, installing cpt"
+		echo -e "\\e[32m[ ciphit ]\\e[m not found, installing ciphIT"
 		prep
 	fi
 }
 
 function remove() {
 	if eval "[ -d $DIR ]"; then
-		echo -e "\\e[32m[ cpt ]\\e[mfound, removing cpt"
+		echo -e "\\e[32m[ ciphit ]\\e[mfound, removing ciphIT"
 		eval "rm -rf $DIR"
-		echo -e "\\e[32m[ cpt ]\\e[m removing aliases"
-		sed -i '/alias cpt/d' ~/.bashrc
-		sed -i '/alias cpt/d' ~/.zshrc
+		echo -e "\\e[32m[ ciphit ]\\e[m removing aliases"
+		sed -i '/alias ciphit/d' ~/.bashrc
+		sed -i '/alias ciphit/d' ~/.zshrc
 		echo -e "\\e[32m[ warning ]\\e[m please restart termux to apply changes"
 	else
-		echo -e "\\e[32m[ cpt ]\\e[m not found, aborting"
+		echo -e "\\e[32m[ ciphit ]\\e[m not found, aborting"
 		exit
 	fi
 }
