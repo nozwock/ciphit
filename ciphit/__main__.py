@@ -24,7 +24,6 @@ except ImportError:
 __author__ = 'sgrkmr'
 __version__ = '0.1.3'
 
-#CBC method with PKCS#7 padding
 class Crypt:
     def __init__(self, salt=Random.new().read(AES.block_size)):
         self.salt = salt
