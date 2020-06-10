@@ -19,6 +19,7 @@ except ImportError:
     if input('Do you want to install them now? (y/n): ') == 'y':
         os.system('pip3 install asciimatics pycrypto')
         raise SystemExit
+    raise SystemExit
 
 __author__ = 'sgrkmr'
 __version__ = '0.1.3'
