@@ -22,7 +22,9 @@
     <img src="https://img.shields.io/github/license/sgrkmr/ciphit.svg?style=flat-square", alt="license">
 </p>
 
-ciphIT is a basic cryptography CLI-tool written in python, Currently only uses AES.
+<p align="center">
+<code>ciphit</code> is a basic cryptography CLI-tool written in python, Currently only uses AES.
+</p>
 
 # Screenshots
 ![scrn](https://user-images.githubusercontent.com/57829219/84272798-81fd9d00-ab4b-11ea-89e2-c712a16c00a3.png)
