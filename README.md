@@ -19,7 +19,9 @@
     <a href="https://GitHub.com/sgrkmr/ciphit/graphs/contributors/", alt="contributors">
         <img src="https://img.shields.io/github/contributors/sgrkmr/ciphit.svg?style=flat-square", alt="contributors">
     </a>
+    <a href="https://opensource.org/licenses/MIT" alt="license">
     <img src="https://img.shields.io/github/license/sgrkmr/ciphit.svg?style=flat-square", alt="license">
+    </a>
 </p>
 
 <p align="center">
@@ -29,22 +31,29 @@
 # Screenshots
 ![scrn](https://user-images.githubusercontent.com/57829219/84272798-81fd9d00-ab4b-11ea-89e2-c712a16c00a3.png)
 
-## Dependencies
-* Modules:
+## Prerequisites
+* Packages:
     * pycrypto`>=2.6.1`
     * asciimatics`>=1.11.0`
 
-## Development & Usage
+## Development
  * Clone the repo, and checkout to `./ciphit`
  ```sh
  $ git clone https://github.com/sgrkmr/ciphit.git
  $ cd ciphit
  ```
- * Install dependencies.
+ * Install dependencies
  ```sh
  $ pip install -r requirements.txt
  ```
  * for Usage
- ```sh
- $ python __init__.py -h
+ ```bash
+ $ ls -F
+ LICENSE*    ciphit/            requirements.txt*
+ README.md*  install_linux.sh*
  ```
+ ```bash
+ $ python ciphit -h
+ ```
+## License
+Licensed under [MIT](https://opensource.org/licenses/MIT).
