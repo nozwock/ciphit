@@ -4,7 +4,7 @@ try:
     from rich import print
 except ImportError as e:
     print(repr(e))
-from basemods.Ciphers import aes
+from ciphit.basemods.Ciphers import aes
 
 
 def print_help():

@@ -34,26 +34,28 @@
 ## Prerequisites
 * Packages:
     * pycrypto`>=2.6.1`
-    * asciimatics`>=1.11.0`
+    * rich`>=8.0.0`
+    * click`>=7.1.2`
+    * click-option-group`>=0.5.1`
 
-## Development
- * Clone the repo, and checkout to `./ciphit`
+## Installation
+To install `ciphit`, you have to clone the repo and checkout to `./ciphit`
  ```sh
- $ git clone https://github.com/sgrkmr/ciphit.git
- $ cd ciphit
+ git clone https://github.com/sgrkmr/ciphit.git
+ cd ciphit
  ```
- * Install dependencies
- ```sh
- $ pip install -r requirements.txt
- ```
- * for Usage
+Now, you may install `ciphit` via either of these two commands:
  ```bash
- $ ls -F
- LICENSE    ciphit/      requirements.txt
- README.md  install.sh* 
+ pip install .
  ```
  ```bash
- $ python ciphit -h
+ python setup.py install
  ```
+`ciphit` is now installed.<br/>for eg. to show the `help` message, use:
+ ```bash
+ ciphit --help
+ ```
+<p><b>Make sure you run these commands in Terminal/CMD/PowerShell or whatever you use.</b></p>
+
 ## License
 Licensed under [MIT](https://opensource.org/licenses/MIT).
