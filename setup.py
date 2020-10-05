@@ -1,5 +1,4 @@
 import setuptools
-from sys import platform
 
 
 with open('README.md', 'r') as readme_fp:
@@ -18,6 +17,11 @@ setuptools.setup(
     version='0.2.0',
     author='Sagar Kumar',
     license='MIT',
+    classifiers=[
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.7",
+    ],
     packages=setuptools.find_packages(exclude=['install.sh']),
     install_requires=required_libs,
     url='https://github.com/sgrkmr/ciphit',
