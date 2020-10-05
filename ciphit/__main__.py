@@ -9,5 +9,4 @@ if __name__ == '__main__':
     mod = importlib.import_module('ciphit')
     attr = {i:j for i,j in mod.__dict__.items() if not i.startswith('_')}
     locals().update(attr)
-    win_ansi_init()
     main()
