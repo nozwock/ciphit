@@ -1,7 +1,7 @@
 #!/usr/bin/zsh
 DIR="~/.ciphit"
 SDIR="~/.ciphit/ciphit"
-CMD="alias ciphit='python ~/.ciphit/ciphit/__init__.py'"
+CMD="alias ciphit='python ~/.ciphit/ciphit'"
 
 function start() {
 	echo -e "\\n  ▓▓▓▓▓▓▓▓▓▓▓▓"
@@ -47,7 +47,7 @@ function install() {
 	function prep() {
 		echo -e "\\e[32m[ ciphit ]\\e[m copying files"
 		eval "mkdir -p $SDIR"
-		eval "cp -t $SDIR ./ciphit/__main__.py ./ciphit/__init__.py"
+		eval "cp -t $SDIR ./ciphit/*"
 		echo -e "\\e[32m[ ciphit ]\\e[m creating aliases"
 		touch ~/.bashrc ~/.zshrc
 		grep -qxF "$CMD" ~/.bashrc || echo $CMD  >> ~/.bashrc
@@ -56,15 +56,15 @@ function install() {
 		if ask "\\e[32m[ finished ]\\e[m would you like to install pycrypto & asciimatics (requires pip)?" Y; then
 			command python3 -m pip install pycrypto asciimatics
 		fi
-		echo -e "\\e[32m[ warning ]\\e[m please restart termux to apply changes"
+		echo -e "\\e[32m[ warning ]\\e[m please restart shell to apply changes"
 	}
 	cd "$(dirname "${BASH_SOURCE[0]}")"
 	if eval "[ -d $DIR ]"; then
-		echo -e "\\e[32m[ ciphit ]\\e[m found, reinstalling ciphIT"
+		echo -e "\\e[32m[ ciphit ]\\e[m found, reinstalling ciphit"
         	eval "rm -rf $DIR"
 		prep
 	else
-		echo -e "\\e[32m[ ciphit ]\\e[m not found, installing ciphIT"
+		echo -e "\\e[32m[ ciphit ]\\e[m not found, installing ciphit"
 		prep
 	fi
 }
@@ -76,7 +76,7 @@ function remove() {
 		echo -e "\\e[32m[ ciphit ]\\e[m removing aliases"
 		sed -i '/alias ciphit/d' ~/.bashrc
 		sed -i '/alias ciphit/d' ~/.zshrc
-		echo -e "\\e[32m[ warning ]\\e[m please restart termux to apply changes"
+		echo -e "\\e[32m[ warning ]\\e[m please restart shell to apply changes"
 	else
 		echo -e "\\e[32m[ ciphit ]\\e[m not found, aborting"
 		exit

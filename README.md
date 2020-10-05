@@ -49,8 +49,8 @@
  * for Usage
  ```bash
  $ ls -F
- LICENSE*    ciphit/            requirements.txt*
- README.md*  install_linux.sh*
+ LICENSE    ciphit/      requirements.txt
+ README.md  install.sh* 
  ```
  ```bash
  $ python ciphit -h
