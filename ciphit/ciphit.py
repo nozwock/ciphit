@@ -2,18 +2,14 @@ import os
 import sys
 import argparse
 from pathlib import Path
-from base64 import b64encode, b64decode
 
 try:
+    from basemods.Ciphers import aes
     from asciimatics.event import KeyboardEvent
     from asciimatics.widgets import (Frame, ListBox, Layout, FileBrowser, Divider, Text, Button, TextBox, Widget, Label, PopUpDialog)
     from asciimatics.scene import Scene
     from asciimatics.screen import Screen
     from asciimatics.exceptions import ResizeScreenError, NextScene, StopApplication
-
-    from Crypto.Cipher import AES
-    from Crypto.Hash import SHA256
-    from Crypto import Random
 except ImportError:
     print('ERROR: Couldn\'t find required modules!')
     if input('Do you want to install them now? (y/n): ') == 'y':
@@ -23,32 +19,6 @@ except ImportError:
 
 __author__ = 'sgrkmr'
 __version__ = '0.1.3'
-
-class Crypt:
-    def __init__(self, salt=Random.new().read(AES.block_size)):
-        self.salt = salt
-        self.enc_dec_method = 'latin-1'
-
-    def encrypt(self, src, key, encode=True):
-        src = src.encode()
-        key = SHA256.new(key.encode()).digest()
-        aes_obj = AES.new(key, AES.MODE_CBC, self.salt)
-        padd = AES.block_size - len(src) % AES.block_size
-        src += bytes([padd]) * padd
-        hx_enc = self.salt + aes_obj.encrypt(src)
-        return b64encode(hx_enc).decode(self.enc_dec_method) if encode else hx_enc
-
-    def decrypt(self, src, key, decode=True):
-        if decode:
-            str_tmp = b64decode(src.encode(self.enc_dec_method))
-        key = SHA256.new(key.encode()).digest()
-        salt = str_tmp[:AES.block_size]
-        aes_obj = AES.new(key, AES.MODE_CBC, salt)
-        str_dec = aes_obj.decrypt(str_tmp[AES.block_size:])
-        padd = str_dec[-1]
-        if str_dec[-padd:] != bytes([padd]) * padd:
-            pass
-        return str_dec[:-padd].decode(self.enc_dec_method)
 
 def win_ansi_init():
     if __import__('platform').system().lower() == 'windows':
@@ -73,7 +43,7 @@ class Simple_Crypt(Frame):
                                    can_scroll=False,
                                    title="ciphit")
         self.set_theme("monochrome")
-        self.crypt = Crypt()
+        self.crypt = aes.Crypt()
         self.desc = desc
         self._main()
 
@@ -96,9 +66,9 @@ class Simple_Crypt(Frame):
         CryptModel.src = self.src.value
         CryptModel.key = self.key.value
         if self.desc.lower() == 'encrypt':
-            CryptModel.res = self.crypt.encrypt(repr(CryptModel.src), CryptModel.key)
+            CryptModel.res = self.crypt.Encode(repr(CryptModel.src), CryptModel.key)
         else:
-            CryptModel.res = '\n'.join(self.crypt.decrypt(CryptModel.src, CryptModel.key).strip("'").split('\\n'))
+            CryptModel.res = '\n'.join(self.crypt.Decode(CryptModel.src, CryptModel.key).strip("'").split('\\n'))
         raise NextScene("end")
 
     @staticmethod
@@ -188,7 +158,7 @@ class File_Crypt(Frame):
                                    can_scroll=False,
                                    title="ciphit")
         self.set_theme("monochrome")
-        self.crypt = Crypt()
+        self.crypt = aes.Crypt()
         self.desc = desc
         self._main()
 
@@ -215,10 +185,10 @@ class File_Crypt(Frame):
                 CryptModel.key = self.key.value
                 if self.desc.lower() == 'encrypt':
                     CryptModel.src = f.readlines()
-                    enc = self.crypt.encrypt(repr('\n'.join([i.strip('\n') for i in CryptModel.src])), CryptModel.key)
+                    enc = self.crypt.Encode(repr('\n'.join([i.strip('\n') for i in CryptModel.src])), CryptModel.key)
                 else:
                     CryptModel.src = f.read()
-                    enc = '\n'.join(self.crypt.decrypt(CryptModel.src.strip(),CryptModel.key).strip("'").split("\\n"))
+                    enc = '\n'.join(self.crypt.Decode(CryptModel.src.strip(),CryptModel.key).strip("'").split("\\n"))
                 f.truncate(0)
                 f.seek(0)
                 f.write(enc)
@@ -275,7 +245,7 @@ class File_Edit(Frame):
                                    can_scroll=False,
                                    title="ciphit")
         self.set_theme("monochrome")
-        self.crypt = Crypt()
+        self.crypt = aes.Crypt()
         self.desc = desc
         self._main()
 
@@ -304,13 +274,13 @@ class File_Edit(Frame):
             if not (CryptModel.src is None or CryptModel.key is None):
                 with open(self.srcf, 'r+', encoding='utf-8') as f:
                     dec = f.read()
-                    dec = '\n'.join(self.crypt.decrypt(dec.strip(),CryptModel.key).strip("'").split("\\n"))
+                    dec = '\n'.join(self.crypt.Decode(dec.strip(),CryptModel.key).strip("'").split("\\n"))
                 self.src.value = dec
 
     def _ok(self):
         with open(self.srcf, 'w', encoding='utf-8') as f:
             print(self.src.value)
-            wrt = self.crypt.encrypt(repr('\n'.join([i.strip('\n') for i in self.src.value.split('\n')])), CryptModel.key)
+            wrt = self.crypt.Encode(repr('\n'.join([i.strip('\n') for i in self.src.value.split('\n')])), CryptModel.key)
             f.write(wrt)
         raise StopApplication("")
 
