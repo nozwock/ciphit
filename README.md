@@ -25,12 +25,13 @@
 </p>
 
 <p align="center">
-<code>ciphit</code> is a basic cryptography CLI-tool written in python, Currently only uses AES.
+<code>ciphit</code> is a basic cryptography CLI-tool written in python, Currently only supports `AES`.
 </p>
 
+<!--
 # Screenshots
 ![scrn](https://user-images.githubusercontent.com/57829219/84272798-81fd9d00-ab4b-11ea-89e2-c712a16c00a3.png)
-
+-->
 ## Prerequisites
 * Packages:
     * pycrypto`>=2.6.1`
@@ -39,21 +40,26 @@
     * click-option-group`>=0.5.1`
 
 ## Installation
-To install `ciphit`, you have to clone the repo and checkout to `./ciphit`
- ```sh
- git clone https://github.com/sgrkmr/ciphit.git
- cd ciphit
+On shell run this command:
+ ```bash
+ $ python3 -m pip install ciphit --upgrade
+ ```
+Or
+To install `ciphit` directly from source, you have to clone the repo and checkout to `./ciphit`
+ ```bash
+ $ git clone https://github.com/sgrkmr/ciphit.git
+ $ cd ciphit
  ```
 Now, you may install `ciphit` via either of these two commands:
  ```bash
- pip install .
+ $ pip install .
  ```
  ```bash
- python setup.py install
+ $ python setup.py install
  ```
 `ciphit` is now installed.<br/>for eg. to show the `help` message, use:
  ```bash
- ciphit --help
+ $ ciphit --help
  ```
 <p><b>Make sure you run these commands in Terminal/CMD/PowerShell or whatever you use.</b></p>
 
