@@ -25,7 +25,7 @@
 </p>
 
 <p align="center">
-<code>ciphit</code> is a basic cryptography CLI-tool written in python, Currently only supports `AES`.
+<code>ciphit</code> is a basic cryptography CLI-tool written in python, Currently only supports AES.
 </p>
 
 <!--
@@ -34,10 +34,10 @@
 -->
 ## Prerequisites
 * Packages:
-    * pycrypto`>=2.6.1`
-    * rich`>=8.0.0`
-    * click`>=7.1.2`
-    * click-option-group`>=0.5.1`
+    * cryptography`==2.8`
+    * rich`==8.0.0`
+    * click`==7.1.2`
+    * click-option-group`==0.5.1`
 
 ## Installation
 On shell run this command:
