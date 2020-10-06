@@ -14,7 +14,7 @@ setuptools.setup(
     description='ciphit is a cryptography CLI-tool',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    version='0.2.1',
+    version='0.3.0',
     author='Sagar Kumar',
     license='MIT',
     classifiers=[
