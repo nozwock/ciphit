@@ -62,7 +62,7 @@ Now, you may install `ciphit` via either of these two commands:
  ```bash
  $ ciphit --help
  ```
-<p><b>Make sure you run these commands in Terminal/CMD/PowerShell or whatever you use.</b></p>
+<p><b>Make sure you run these commands in Terminal/CMD or any other shell you use.</b></p>
 
 ## License
 Licensed under [MIT](https://opensource.org/licenses/MIT).
