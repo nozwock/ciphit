@@ -2,12 +2,12 @@ import os
 import sys
 import argparse
 from pathlib import Path
-sys.path.insert(0,
-    os.path.dirname(os.path.dirname(
-        os.path.abspath(__file__))))
+#sys.path.insert(0,
+#    os.path.dirname(os.path.dirname(
+#        os.path.abspath(__file__))))
 
 try:
-    from basemods.Ciphers import aes
+    import aes
     from asciimatics.event import KeyboardEvent
     from asciimatics.widgets import (Frame, ListBox, Layout, FileBrowser, Divider, Text, Button, TextBox, Widget, Label, PopUpDialog)
     from asciimatics.scene import Scene

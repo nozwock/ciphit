@@ -5,7 +5,7 @@ from click_option_group import (
     RequiredMutuallyExclusiveOptionGroup,
 )
 from rich import print
-from ciphit.basemods.Ciphers import aes
+from ciphit.basemods.Ciphers import aes_cbc
 
 def get_singleline(multi: list) -> repr:
     assert isinstance(multi,(list,str))
@@ -80,29 +80,28 @@ def main(**kwargs):
             exit(1)
         kwargs['text']=kwargs['text'].strip('\n')
 
-    cpt = aes.Crypt()
     if kwargs['edit']:
-        deciphered = get_multiline(cpt.Decode(kwargs['file'].read().strip(), kwargs['key']))
+        deciphered = get_multiline(aes_cbc.PassDecode(kwargs['file'].read().strip(), kwargs['key']))
         kwargs['text']=click.edit(text=deciphered)
         if kwargs['text'] is None: exit(1)
-        ciphered = cpt.Encode(get_singleline(kwargs['text'].split('\n')), kwargs['key'])
+        ciphered = aes_cbc.PassEncode(get_singleline(kwargs['text'].split('\n')), kwargs['key'])
         kwargs['file'].truncate(0)
         kwargs['file'].seek(0)
         kwargs['file'].write(ciphered)
     elif not kwargs['edit']:
         if not isFile:
             if kwargs['encode']:
-                _ = cpt.Encode(kwargs['text'],kwargs['key'])
+                _ = aes_cbc.PassEncode(kwargs['text'],kwargs['key'])
                 print(f"Final result: [bold yellow]{_}[/bold yellow]")
             else:#kwargs['decode']
-                _ = cpt.Decode(kwargs['text'],kwargs['key'])
+                _ = aes_cbc.PassDecode(kwargs['text'],kwargs['key'])
                 print(f"Final result: [bold green]{_}[/bold green]")
         elif isFile:
             if kwargs['encode']:
-                _ = cpt.Encode(get_singleline(kwargs['file'].readlines()), kwargs['key'])
-                msg="[bold orange]File is now enncrypted.[/bold orange]"
+                _ = aes_cbc.PassEncode(get_singleline(kwargs['file'].readlines()), kwargs['key'])
+                msg="[bold green]File is now enncrypted.[/bold green]"
             else:#kwargs['decode']
-                _ = get_multiline(cpt.Decode(kwargs['file'].read().strip(), kwargs['key']))
+                _ = get_multiline(aes_cbc.PassDecode(kwargs['file'].read().strip(), kwargs['key']))
                 msg="[bold green]File is now decrypted.[/bold green]"
             kwargs['file'].truncate(0)
             kwargs['file'].seek(0)
