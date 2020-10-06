@@ -10,11 +10,11 @@ with open('requirements.txt', 'r') as req_fp:
 
 setuptools.setup(
     name='ciphit',
-    scripts=['ciphit/ciphitapp.py'],
+    scripts=['ciphit/__main__.py'],
     description='ciphit is a cryptography CLI-tool',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    version='0.2.0',
+    version='0.2.1',
     author='Sagar Kumar',
     license='MIT',
     classifiers=[
@@ -29,7 +29,7 @@ setuptools.setup(
     python_requires='>=3.7',
     entry_points={
     'console_scripts': [
-        'ciphit = ciphit.ciphitapp:main',
+        'ciphit = ciphit.__main__:main',
         ],
     },
 )
