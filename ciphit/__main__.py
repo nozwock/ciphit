@@ -80,8 +80,14 @@ def main(**kwargs):
             exit(1)
         kwargs['text']=kwargs['text'].strip('\n')
 
+    key_err="[bold red]error:[/bold red] Invalid Key."
+
     if kwargs['edit']:
-        deciphered = get_multiline(aes_cbc.PassDecode(kwargs['file'].read().strip(), kwargs['key']))
+        try:
+            deciphered = get_multiline(aes_cbc.PassDecode(kwargs['file'].read().strip(), kwargs['key']))
+        except Exception as e:
+            print(key_err)
+            exit(1)
         kwargs['text']=click.edit(text=deciphered)
         if kwargs['text'] is None: exit(1)
         ciphered = aes_cbc.PassEncode(get_singleline(kwargs['text'].split('\n')), kwargs['key'])
@@ -94,14 +100,22 @@ def main(**kwargs):
                 _ = aes_cbc.PassEncode(kwargs['text'],kwargs['key'])
                 print(f"Final result: [bold yellow]{_}[/bold yellow]")
             else:#kwargs['decode']
-                _ = aes_cbc.PassDecode(kwargs['text'],kwargs['key'])
+                try:
+                    _ = aes_cbc.PassDecode(kwargs['text'],kwargs['key'])
+                except Exception as e:
+                    print(key_err)
+                    exit(1)
                 print(f"Final result: [bold green]{_}[/bold green]")
         elif isFile:
             if kwargs['encode']:
                 _ = aes_cbc.PassEncode(get_singleline(kwargs['file'].readlines()), kwargs['key'])
                 msg="[bold green]File is now enncrypted.[/bold green]"
             else:#kwargs['decode']
-                _ = get_multiline(aes_cbc.PassDecode(kwargs['file'].read().strip(), kwargs['key']))
+                try:
+                    _ = get_multiline(aes_cbc.PassDecode(kwargs['file'].read().strip(), kwargs['key']))
+                except Exception as e:
+                    print(key_err)
+                    exit(1)
                 msg="[bold green]File is now decrypted.[/bold green]"
             kwargs['file'].truncate(0)
             kwargs['file'].seek(0)
