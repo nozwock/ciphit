@@ -130,6 +130,3 @@ def main(**kwargs):
             #this condition never occurs, for now.
             print_help()
             exit(1)
-
-if __name__ == '__main__':
-    main()
