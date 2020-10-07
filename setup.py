@@ -14,7 +14,7 @@ setuptools.setup(
     description='A cryptography cli-tool',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    version='0.5.1',
+    version='0.5.2',
     author='Sagar Kumar',
     license='MIT',
     classifiers=[
