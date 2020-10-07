@@ -4,23 +4,23 @@
     </a>
 </p>
 <p align="center">
-    <a href="https://GitHub.com/sgrkmr/ciphit/releases/", alt="version">
-        <img src="https://img.shields.io/github/release/sgrkmr/ciphit.svg?style=flat-square&color=blue", alt="version">
+    <a href="https://pypi.org/project/ciphit/", alt="version">
+        <img src="https://img.shields.io/pypi/v/ciphit.svg", alt="version">
     </a>
-    <a href="https://GitHub.com/sgrkmr/ciphit/releases/", alt="downloads">
-        <img src="https://img.shields.io/github/downloads/sgrkmr/ciphit/total.svg?style=flat-square", alt="downloads">
+    <a href="https://pypi.org/project/ciphit/", alt="downloads">
+        <img src="https://pepy.tech/badge/ciphit", alt="downloads">
     </a>
     <a href="https://github.com/sgrkmr/ciphit/commits/master", alt="commit">
-        <img src="https://img.shields.io/github/last-commit/sgrkmr/ciphit?style=flat-square", alt="commit">
+        <img src="https://img.shields.io/github/last-commit/sgrkmr/ciphit", alt="commit">
     </a>
     <a href="https://www.python.org/downloads/release/python-374/">
-        <img src="https://img.shields.io/badge/Python-3.7-blue?style=flat-square", alt="python3">
+        <img src="https://img.shields.io/badge/Python-3.7-blue", alt="python3">
     </a>
     <a href="https://GitHub.com/sgrkmr/ciphit/graphs/contributors/", alt="contributors">
-        <img src="https://img.shields.io/github/contributors/sgrkmr/ciphit.svg?style=flat-square", alt="contributors">
+        <img src="https://img.shields.io/github/contributors/sgrkmr/ciphit.svg", alt="contributors">
     </a>
     <a href="https://opensource.org/licenses/MIT" alt="license">
-    <img src="https://img.shields.io/github/license/sgrkmr/ciphit.svg?style=flat-square", alt="license">
+    <img src="https://img.shields.io/github/license/sgrkmr/ciphit.svg", alt="license">
     </a>
 </p>
 
@@ -45,8 +45,7 @@ On shell run this command:
  ```bash
  $ python3 -m pip install ciphit --upgrade
  ```
-Or
-To install `ciphit` directly from source, you have to clone the repo and checkout to `./ciphit`
+**OR** To install `ciphit` directly from source, first you have to clone the repo and checkout to `./ciphit`
  ```bash
  $ git clone https://github.com/sgrkmr/ciphit.git
  $ cd ciphit
