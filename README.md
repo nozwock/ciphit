@@ -33,35 +33,19 @@
 # Screenshots
 ![scrn](https://user-images.githubusercontent.com/57829219/84272798-81fd9d00-ab4b-11ea-89e2-c712a16c00a3.png)
 -->
-## Prerequisites
-* Packages:
-    * cryptography`>=2.8`
-    * rich`>=8.0.0`
-    * click`>=7.1.2`
-    * click-option-group`>=0.5.1`
 
 ## Installation
 On shell run this command:
- ```bash
+ ```sh
  $ python3 -m pip install ciphit --upgrade
  ```
-**OR** To install `ciphit` directly from source, first you have to clone the repo and checkout to `./ciphit`
- ```bash
- $ git clone https://github.com/sgrkmr/ciphit.git
- $ cd ciphit
- ```
-Now, you may install `ciphit` via either of these two commands:
- ```bash
- $ pip install .
- ```
- ```bash
- $ python setup.py install
- ```
-`ciphit` is now installed.<br/>for eg. to show the `help` message, use:
- ```bash
- $ ciphit --help
- ```
+`ciphit` should be installed now.<br/>
+For a full list of arguments, run 
+```sh
+$ ciphit --help
+```
 <p><b>Make sure you run these commands in Terminal/CMD or any other shell you use.</b></p>
 
 ## License
 Licensed under [MIT](https://opensource.org/licenses/MIT).
+ 
