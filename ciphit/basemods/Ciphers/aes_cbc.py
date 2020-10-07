@@ -9,11 +9,14 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 backend = default_backend()
 iterations = 100_000
 
+
 def Encode(message: bytes, key=Fernet.generate_key()) -> bytes:
     return Fernet(key).encrypt(message.encode()).decode(), key
 
+
 def Decode(token: bytes, key: bytes) -> bytes:
     return Fernet(key).decrypt(token.encode()).decode()
+
 
 def _derive_key(password: bytes, salt: bytes, iterations: int = iterations) -> bytes:
     """Derive a secret key from a given password and salt"""
@@ -21,6 +24,7 @@ def _derive_key(password: bytes, salt: bytes, iterations: int = iterations) -> b
         algorithm=hashes.SHA256(), length=32, salt=salt,
         iterations=iterations, backend=backend)
     return b64e(kdf.derive(password))
+
 
 def PassEncode(message: bytes, password: str, iterations: int = iterations) -> bytes:
     salt = secrets.token_bytes(16)
@@ -32,6 +36,7 @@ def PassEncode(message: bytes, password: str, iterations: int = iterations) -> b
             b64d(Fernet(key).encrypt(message.encode())),
         )
     ).decode()
+
 
 def PassDecode(token: bytes, password: str) -> bytes:
     decoded = b64d(token)
