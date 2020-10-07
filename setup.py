@@ -1,4 +1,5 @@
 import setuptools
+from ciphit import __version__
 
 
 with open('README.md', 'r') as readme_fp:
@@ -14,7 +15,7 @@ setuptools.setup(
     description='A cryptography cli-tool',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    version='0.5.2',
+    version=__version__,
     author='Sagar Kumar',
     license='MIT',
     classifiers=[
