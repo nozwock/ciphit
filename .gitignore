@@ -47,6 +47,18 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
+# Created by git when using merge tools for conflicts
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*
+*_BACKUP_*.txt
+*_BASE_*.txt
+*_LOCAL_*.txt
+*_REMOTE_*.txt
+
+.vscode/
+
 # Translations
 *.mo
 *.pot

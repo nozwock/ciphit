@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "ciphit"
+version = "0.5.2"
+description = "A cryptography cli-tool"
+authors = ["Sagar Kumar <57829219+sgrkmr@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/sgrkmr/ciphit"
+keywords = ['cli', 'commandline', 'user-interface', 'ui', 'cryptography']
+
+[tool.poetry.dependencies]
+python = "^3.7"
+cryptography = "^2.8"
+rich = "^8.0.0"
+click = "^7.1.2"
+click-option-group = "^0.5.1"
+
+[tool.poetry.scripts]
+ciphit = 'ciphit.ciphit:main'
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
