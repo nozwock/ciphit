@@ -11,7 +11,7 @@ with open('requirements.txt', 'r') as req_fp:
 setuptools.setup(
     name='ciphit',
     scripts=['ciphit/__main__.py'],
-    description='ciphit is a cryptography CLI-tool',
+    description='A cryptography cli-tool',
     long_description=long_description,
     long_description_content_type='text/markdown',
     version='0.5.1',
@@ -22,7 +22,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.7",
     ],
-    packages=setuptools.find_packages(exclude=['install.sh']),
+    packages=setuptools.find_packages(),
     install_requires=required_libs,
     url='https://github.com/sgrkmr/ciphit',
     keywords='cli commandline user-interface ui cryptography',
