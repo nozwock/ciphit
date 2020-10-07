@@ -24,6 +24,9 @@ rich = "^8.0.0"
 click = "^7.1.2"
 click-option-group = "^0.5.1"
 
+[tool.poetry.dev-dependencies]
+black = "^20.8b1"
+
 [tool.poetry.scripts]
 ciphit = 'ciphit.ciphit:main'
 
