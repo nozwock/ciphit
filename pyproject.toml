@@ -2,11 +2,20 @@
 name = "ciphit"
 version = "0.5.2"
 description = "A cryptography cli-tool"
-authors = ["Sagar Kumar <57829219+sgrkmr@users.noreply.github.com>"]
+authors = [
+    "Sagar Kumar <57829219+sgrkmr@users.noreply.github.com>"
+    ]
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/sgrkmr/ciphit"
-keywords = ['cli', 'commandline', 'user-interface', 'ui', 'cryptography']
+homepage = "https://github.com/sgrkmr/ciphit"
+keywords = [
+    'cli', 
+    'commandline', 
+    'user-interface', 
+    'ui', 
+    'cryptography'
+    ]
 
 [tool.poetry.dependencies]
 python = "^3.7"
@@ -19,5 +28,7 @@ click-option-group = "^0.5.1"
 ciphit = 'ciphit.ciphit:main'
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = [
+    "poetry-core>=1.0.0"
+    ]
 build-backend = "poetry.core.masonry.api"
