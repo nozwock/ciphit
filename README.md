@@ -24,11 +24,12 @@
 ## Installation and Usage
 ### Installation
 
-_ciphit_ can be installed by running `pip install black`.
+_ciphit_ can be installed by running `pip install ciphit`.
 
 #### Install from GitHub
 
 If you want to install from GitHub, use:
+
 `pip install git+git://github.com/sgrkmr/ciphit`
 
 ### Usage
