@@ -100,7 +100,7 @@ def main(**kwargs):
             deciphered = get_multiline(
                 Ciphers.aes_cbc.PassDecode(kwargs["file"].read().strip(), kwargs["key"])
             )
-        except Exception as e:
+        except Exception:
             print(key_err)
             exit(1)
         kwargs["text"] = click.edit(text=deciphered)
@@ -120,7 +120,7 @@ def main(**kwargs):
             else:  # kwargs['decode']
                 try:
                     _ = Ciphers.aes_cbc.PassDecode(kwargs["text"], kwargs["key"])
-                except Exception as e:
+                except Exception:
                     print(key_err)
                     exit(1)
                 print(f"Final result: [bold green]{_}[/bold green]")
@@ -137,7 +137,7 @@ def main(**kwargs):
                             kwargs["file"].read().strip(), kwargs["key"]
                         )
                     )
-                except Exception as e:
+                except Exception:
                     print(key_err)
                     exit(1)
                 msg = "[bold green]File is now decrypted.[/bold green]"
