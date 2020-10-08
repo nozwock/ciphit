@@ -35,12 +35,13 @@
 -->
 
 ## Installation
-On shell run this command:
+- On shell run this command:
  ```sh
  $ python3 -m pip install ciphit --upgrade
  ```
-`ciphit` should be installed now.<br/>
-For a full list of arguments, run 
+ > `ciphit` should be installed now.
+ 
+- For a full list of arguments, run 
 ```sh
 $ ciphit --help
 ```
