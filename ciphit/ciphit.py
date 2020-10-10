@@ -8,15 +8,6 @@ from rich import print
 from .basemods import Crypto
 
 
-def get_singleline(multi: list) -> repr:
-    assert isinstance(multi, (list, str))
-    return repr("\n".join([i.strip("\n") for i in multi]))
-
-
-def get_multiline(single: str) -> str:
-    return "\n".join(single.strip("'").split("\\n"))
-
-
 def print_help():
     ctx = click.get_current_context()
     click.echo(ctx.get_help())
@@ -97,10 +88,8 @@ def main(**kwargs):
 
     if kwargs["edit"]:
         try:
-            deciphered = get_multiline(
-                Crypto.Aes_128_cbc_pass().decrypt(
-                    kwargs["file"].read().strip(), kwargs["key"]
-                )
+            deciphered = Crypto.Aes_128_cbc_pass().decrypt(
+                kwargs["file"].read().strip(), kwargs["key"]
             )
         except Exception:
             print(key_err)
@@ -108,9 +97,7 @@ def main(**kwargs):
         kwargs["text"] = click.edit(text=deciphered)
         if kwargs["text"] is None:
             exit(1)
-        ciphered = Crypto.Aes_128_cbc_pass().encrypt(
-            get_singleline(kwargs["text"].split("\n")), kwargs["key"]
-        )
+        ciphered = Crypto.Aes_128_cbc_pass().encrypt(kwargs["text"], kwargs["key"])
         kwargs["file"].truncate(0)
         kwargs["file"].seek(0)
         kwargs["file"].write(ciphered)
@@ -129,15 +116,13 @@ def main(**kwargs):
         elif isFile:
             if kwargs["encode"]:
                 _ = Crypto.Aes_128_cbc_pass().encrypt(
-                    get_singleline(kwargs["file"].readlines()), kwargs["key"]
+                    kwargs["file"].read(), kwargs["key"]
                 )
                 msg = "[bold green]File is now enncrypted.[/bold green]"
             else:  # kwargs['decode']
                 try:
-                    _ = get_multiline(
-                        Crypto.Aes_128_cbc_pass().decrypt(
-                            kwargs["file"].read().strip(), kwargs["key"]
-                        )
+                    _ = Crypto.Aes_128_cbc_pass().decrypt(
+                        kwargs["file"].read().strip(), kwargs["key"]
                     )
                 except Exception:
                     print(key_err)
