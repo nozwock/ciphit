@@ -6,9 +6,10 @@
 <a href="https://pypi.org/project/ciphit/"><img alt="PyPi" src="https://img.shields.io/pypi/v/ciphit.svg"></a>
 <a href="https://pypi.org/project/ciphit/"><img alt="Downloads" src="https://pepy.tech/badge/ciphit"></a>
 <a href="https://github.com/sgrkmr/ciphit/commits/master"><img alt="Commits" src="https://img.shields.io/github/last-commit/sgrkmr/ciphit"></a>
-<a href="https://www.python.org/downloads/release/python-374/"><img alt="python3" src="https://img.shields.io/badge/Python-3.7-blue"></a>
-<a href="https://GitHub.com/sgrkmr/ciphit/graphs/contributors/"><img alt="Contributors" src="https://img.shields.io/github/contributors/sgrkmr/ciphit.svg"></a>
+<a href="https://pypi.python.org/pypi/ciphit/"><img alt="python3" src="https://img.shields.io/pypi/pyversions/ciphit.svg"></a>
+<!--<a href="https://GitHub.com/sgrkmr/ciphit/graphs/contributors/"><img alt="Contributors" src="https://img.shields.io/github/contributors/sgrkmr/ciphit.svg"></a>-->
 <a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/github/license/sgrkmr/ciphit.svg"></a>
+<a href="https://github.com/psf/black"><img alt="Code style" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 </p>
 
 <p align="center">
