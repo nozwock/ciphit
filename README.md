@@ -3,12 +3,12 @@
 </p>
 
 <p align="center">
-<a href="https://pypi.org/project/ciphit/"><img alt="PyPi" src="https://img.shields.io/pypi/v/ciphit.svg"></a>
-<a href="https://pypi.org/project/ciphit/"><img alt="Downloads" src="https://pepy.tech/badge/ciphit"></a>
+<a href="https://pypi.org/project/ciphit/"><img alt="PyPi" src="https://img.shields.io/pypi/v/ciphit?branch=master&label=PyPi%20Version&logo=PyPi&logoColor=ffffff&labelColor=306998&color=FFD43B&style=flat"></a>
+<a href="https://pypi.org/project/ciphit/"><img alt="Downloads" src="https://img.shields.io/pypi/dm/ciphit?branch=master&label=Downloads&logo=PyPi&logoColor=ffffff&labelColor=306998&color=FFD43B&style=flat"></a>
 <a href="https://github.com/sgrkmr/ciphit/commits/master"><img alt="Commits" src="https://img.shields.io/github/last-commit/sgrkmr/ciphit"></a>
-<a href="https://pypi.python.org/pypi/ciphit/"><img alt="python3" src="https://img.shields.io/pypi/pyversions/ciphit.svg"></a>
+<a href="https://pypi.python.org/pypi/ciphit/"><img alt="python3" src="https://img.shields.io/pypi/pyversions/ciphit?branch=master&label=Python&logo=Python&logoColor=ffffff&labelColor=306998&color=FFD43B&style=flat"></a>
 <!--<a href="https://GitHub.com/sgrkmr/ciphit/graphs/contributors/"><img alt="Contributors" src="https://img.shields.io/github/contributors/sgrkmr/ciphit.svg"></a>-->
-<a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/github/license/sgrkmr/ciphit.svg"></a>
+<a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/github/license/sgrkmr/ciphit?branch=master&label=License&logo=GitHub&logoColor=ffffff&labelColor=282828&color=informational&style=flat)"></a>
 <a href="https://github.com/psf/black"><img alt="Code style" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 </p>
 
