@@ -1,0 +1,61 @@
+#!/bin/sh
+ask() {
+	local prompt default reply;
+
+	while true; do
+
+		if [ "${2:-}" = "Y" ]; then
+			prompt="Y/n"
+			default=Y
+		elif [ "${2:-}" = "N" ]; then
+			prompt="y/N"
+			default=N
+		else
+			prompt="y/n"
+			default=
+		fi
+
+		echo -n "$1 [$prompt] "
+		read -r reply </dev/tty
+
+		if [ -z "$reply" ]; then
+			reply=$default
+		fi
+
+		case "$reply" in
+		Y* | y*) return 0 ;;
+		N* | n*) return 1 ;;
+		esac
+
+	done
+}
+
+install() {
+	if [ -d $CIPHIT ]; then
+		echo "${YELLOW} You already have ciphit installed.${RESET}"
+	else
+		echo "${cpt_tag} Installing ciphit"
+		echo "${cpt_tag} Copying files"
+		mkdir -p $PKG_DIR
+		cp -rt $PKG_DIR $SOURCE_DIR/*
+		
+		# Generating __main__.py
+		cat > $CIPHIT/__main__.py << EOF
+#!/usr/bin/env python
+from ciphit.ciphit import main
+
+if __name__ == "__main__":
+	main()
+EOF
+		
+		echo "${cpt_tag} Creating aliases"
+		touch ~/.bashrc ~/.zshrc
+		grep -sF $ALIAS_CMD ~/.bashrc  || echo $ALIAS_CPT  >> ~/.bashrc
+		grep -sF $ALIAS_CMD ~/.zshrc || echo $ALIAS_CPT >> ~/.zshrc
+
+		if ask "${cpt_tag} Do you want to install dependencies now?" N; then
+			command python3 -m pip install -r requirements.txt
+		fi
+		echo "${GREEN}[ installed ]${RESET} Please restart shell to apply changes"
+	fi
+}

@@ -1,0 +1,14 @@
+#!/bin/sh
+uninstall() {
+	if [ -d $CIPHIT ]; then
+		echo "${cpt_tag} Uninstalling ciphit"
+		rm -rf $CIPHIT
+		echo "${cpt_tag} Removing aliases"
+		sed -i "/$ALIAS_CMD/d" ~/.bashrc
+		sed -i "/$ALIAS_CMD/d" ~/.zshrc
+		echo "${RED}[ uninstalled ]${RESET} Please restart shell to apply changes"
+	else
+		echo "${YELLOW}ciphit couldn't be found.${RESET}"
+		exit 1
+	fi
+}
