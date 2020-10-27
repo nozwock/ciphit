@@ -21,7 +21,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
-cryptography = "^2.8"
+cryptography = ">=2.8,<4.0"
 rich = "^8.0.0"
 click = "^7.1.2"
 click-option-group = "^0.5.1"
