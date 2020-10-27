@@ -73,7 +73,7 @@ def main(**kwargs):
             )
 
     if not kwargs["key"]:
-        kwargs["key"] = click.prompt("Key", hide_input=True, confirmation_prompt=True)
+        kwargs["key"] = click.prompt("Key", hide_input=True)
 
     if not kwargs["text"] and (not kwargs["edit"] and not isFile):
         print("[bold blue]Opening editor[/bold blue]")
