@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ciphit"
-version = "0.6.0"
+version = "0.6.1"
 description = "A cryptography cli-tool"
 authors = [
     "Sagar Kumar <57829219+sgrkmr@users.noreply.github.com>"
