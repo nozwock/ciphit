@@ -12,6 +12,8 @@
 <a href="https://github.com/psf/black"><img alt="Code style" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 </p>
 
+<h1 align="center">⚠️DEPRECATED⚠️</h1>
+
 <p align="center">
 <code>ciphit</code> is a basic cryptography cli-tool, Currently only supports AES-CBC.
 </p>
